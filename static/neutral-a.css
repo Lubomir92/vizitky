@@ -1,0 +1,10 @@
+@import url('neutral-base.css');
+
+:root {
+    --bg: #fafaf8;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e5e5e0;
+    --accent: #1e3a8a;
+    --font-display: 'Instrument Serif', Georgia, serif;
+}

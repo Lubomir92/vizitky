@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bento.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a>
+        <a href="/v2">2</a>
+        <a href="/v3" class="active">3</a>
+        <a href="/v4">4</a>
+    </nav>
+
+    <div class="bg-grid"></div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="bento-hero">
+
+                <div class="tile tile-main">
+                    <p class="eyebrow">Portfólio — 2025</p>
+                    <h1>{{ data.meno.split(' ')[0] }}<br><span>{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</span></h1>
+                    <p class="profesia">{{ data.profesia }}</p>
+                </div>
+
+                <div class="tile tile-stat">
+                    <span class="stat-num">8+</span>
+                    <span class="stat-label">rokov praxe</span>
+                </div>
+
+                <div class="tile tile-stat tile-accent">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">projektov</span>
+                </div>
+
+                <div class="tile tile-quote">
+                    <p>„{{ data.tagline }}"</p>
+                </div>
+
+                <div class="tile tile-cta">
+                    <a href="#kontakt" class="btn btn-primary">Kontaktovať →</a>
+                </div>
+
+                <div class="tile tile-loc">
+                    <span>📍</span>
+                    <span>{{ data.lokacia }}</span>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="o-mne">
+        <div class="container">
+            <p class="section-label">01 — O mne</p>
+            <p class="lead">{{ data.o_mne }}</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label">02 — Služby</p>
+            <div class="bento-services">
+                {% for s in data.sluzby %}
+                <div class="service-tile">
+                    <span class="service-num">0{{ loop.index }}</span>
+                    <h3>{{ s.nazov }}</h3>
+                    <p>{{ s.popis }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <div class="container">
+            <p class="section-label">03 — Kontakt</p>
+            <div class="bento-contact">
+                <div class="contact-tile contact-main">
+                    <h2>Máte projekt?<br><span>Ozvite sa.</span></h2>
+                </div>
+                <div class="contact-tile">
+                    <span class="label">Email</span>
+                    <a href="mailto:{{ data.email }}">{{ data.email }}</a>
+                </div>
+                <div class="contact-tile">
+                    <span class="label">Telefón</span>
+                    <a href="tel:{{ data.telefon }}">{{ data.telefon }}</a>
+                </div>
+                <div class="contact-tile tile-social">
+                    {% for s in data.social %}
+                    <a href="{{ s.url }}">{{ s.nazov }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2025 {{ data.meno }}</p></div></footer>
+</body>
+</html>

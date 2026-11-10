@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style-' + style + '.css') }}">
+</head>
+<body class="theme-{{ style }}">
+
+    <nav class="switcher">
+        <a href="/dark" class="{{ 'active' if style == 'dark' }}">Tmavý</a>
+        <a href="/light" class="{{ 'active' if style == 'light' }}">Svetlý</a>
+        <a href="/colorful" class="{{ 'active' if style == 'colorful' }}">Farebný</a>
+        <a href="/brutal" class="{{ 'active' if style == 'brutal' }}">Bold</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="logo">
+            <h1>
+                {{ data.meno.split(' ')[0] }}
+                <span class="outline">{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</span>
+            </h1>
+            <p class="profesia">{{ data.profesia }}</p>
+            <p class="tagline">{{ data.tagline }}</p>
+            <a href="#kontakt" class="btn">Kontaktovať</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>O mne</h2>
+        <p class="text">{{ data.o_mne }}</p>
+    </section>
+
+    <section class="section">
+        <h2>Služby</h2>
+        <div class="grid">
+            {% for s in data.sluzby %}
+            <div class="card" data-num="0{{ loop.index }}">
+                <h3>{{ s.nazov }}</h3>
+                <p>{{ s.popis }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <h2>Kontakt</h2>
+        <div class="kontakt">
+            <p>📧 <a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+            <p>📞 {{ data.telefon }}</p>
+            <p>📍 {{ data.lokacia }}</p>
+        </div>
+        <div class="social">
+            {% for s in data.social %}
+            <a href="{{ s.url }}" target="_blank">{{ s.nazov }}</a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 {{ data.meno }} — Všetky práva vyhradené.</p>
+    </footer>
+
+</body>
+</html>

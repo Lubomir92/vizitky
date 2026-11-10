@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='luxury.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a><a href="/v2">2</a><a href="/v3">3</a><a href="/v4">4</a>
+        <a href="/v5">5</a><a href="/v6">6</a><a href="/v7" class="active">7</a>
+        <a href="/v8">8</a><a href="/v9">9</a><a href="/v10">10</a><a href="/v11">11</a>
+    </nav>
+
+    <div class="lux-bg">
+        <svg class="lines" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path d="M0,200 Q500,0 1000,200" stroke="rgba(212,160,23,0.15)" fill="none" stroke-width="1"/>
+            <path d="M0,400 Q500,200 1000,400" stroke="rgba(212,160,23,0.12)" fill="none" stroke-width="1"/>
+            <path d="M0,600 Q500,400 1000,600" stroke="rgba(212,160,23,0.1)" fill="none" stroke-width="1"/>
+            <path d="M0,800 Q500,600 1000,800" stroke="rgba(212,160,23,0.08)" fill="none" stroke-width="1"/>
+        </svg>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">Portfólio — 2025</p>
+            <h1>{{ data.meno.split(' ')[0] }}<br><em>{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</em></h1>
+            <p class="profesia">{{ data.profesia }}</p>
+            <p class="tagline">{{ data.tagline }}</p>
+            <div class="cta">
+                <a href="#kontakt" class="btn btn-primary">Kontaktovať →</a>
+                <a href="#o-mne" class="btn btn-ghost">Viac o mne</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="o-mne">
+        <div class="container">
+            <p class="section-label">01 — O mne</p>
+            <p class="lead">{{ data.o_mne }}</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label">02 — Služby</p>
+            <div class="services">
+                {% for s in data.sluzby %}
+                <div class="service">
+                    <div class="service-num">0{{ loop.index }}</div>
+                    <div>
+                        <h3>{{ s.nazov }}</h3>
+                        <p>{{ s.popis }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <div class="container">
+            <p class="section-label">03 — Kontakt</p>
+            <h2 class="contact-headline">Máte projekt?<br><em>Ozvite sa.</em></h2>
+            <div class="contact-info">
+                <p><a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+                <p>{{ data.telefon }}</p>
+                <p>{{ data.lokacia }}</p>
+            </div>
+            <div class="social">
+                {% for s in data.social %}<a href="{{ s.url }}">{{ s.nazov }}</a>{% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2025 {{ data.meno }}</p></div></footer>
+</body>
+</html>

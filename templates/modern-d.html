@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modern-d.css') }}">
+</head>
+<body>
+    <nav class="switcher">
+        <a href="/a">A</a>
+        <a href="/b">B</a>
+        <a href="/c">C</a>
+        <a href="/d" class="active">D</a>
+    </nav>
+
+    <div class="noise"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">Portfólio — 2025</p>
+            <h1>{{ data.meno.split(' ')[0] }}<br><em>{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</em></h1>
+            <p class="profesia">{{ data.profesia }}</p>
+            <p class="tagline">{{ data.tagline }}</p>
+            <div class="cta">
+                <a href="#kontakt" class="btn btn-primary">Kontaktovať →</a>
+                <a href="#o-mne" class="btn btn-ghost">Viac o mne</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="o-mne">
+        <div class="container">
+            <p class="section-label">01 — O mne</p>
+            <p class="lead">{{ data.o_mne }}</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label">02 — Služby</p>
+            <div class="services">
+                {% for s in data.sluzby %}
+                <div class="service">
+                    <div class="service-num">0{{ loop.index }}</div>
+                    <div class="service-body">
+                        <h3>{{ s.nazov }}</h3>
+                        <p>{{ s.popis }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <div class="container">
+            <p class="section-label">03 — Kontakt</p>
+            <h2 class="contact-headline">Máte projekt?<br><em>Ozvite sa.</em></h2>
+            <div class="contact-info">
+                <p><a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+                <p>{{ data.telefon }}</p>
+                <p>{{ data.lokacia }}</p>
+            </div>
+            <div class="social">
+                {% for s in data.social %}<a href="{{ s.url }}">{{ s.nazov }}</a>{% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2025 {{ data.meno }}</p></div></footer>
+</body>
+</html>

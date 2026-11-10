@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='waves.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a><a href="/v2">2</a><a href="/v3">3</a><a href="/v4">4</a>
+        <a href="/v5">5</a><a href="/v6">6</a><a href="/v7">7</a>
+        <a href="/v8">8</a><a href="/v9">9</a><a href="/v10">10</a><a href="/v11" class="active">11</a>
+    </nav>
+
+    <div class="waves-bg">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="wave wave-4"></div>
+        <div class="wave wave-5"></div>
+        <div class="equalizer">
+            {% for i in range(20) %}
+            <div class="bar"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">OZVUČENIE & SVETLO</p>
+            <h1>Zvuk, ktorý<br><span>cítite.</span></h1>
+            <p class="profesia">{{ data.profesia }}</p>
+            <p class="tagline">{{ data.tagline }}</p>
+            <div class="cta">
+                <a href="#kontakt" class="btn btn-primary">Nezáväzná ponuka →</a>
+                <a href="#sluzby" class="btn btn-ghost">Čo ponúkame</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="sluzby">
+        <div class="container">
+            <p class="section-label">01 — Služby</p>
+            <div class="bento">
+                {% for s in data.sluzby %}
+                <div class="bento-card">
+                    <div class="bento-num">0{{ loop.index }}</div>
+                    <h3>{{ s.nazov }}</h3>
+                    <p>{{ s.popis }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label">02 — Recenzie</p>
+            <div class="reviews">
+                {% for r in data.recenzie[:4] %}
+                <div class="review">
+                    <p>„{{ r.text }}"</p>
+                    <span>{{ r.autor }} · {{ r.typ }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <div class="container">
+            <p class="section-label">03 — Kontakt</p>
+            <h2 class="contact-headline">Máte podujatie?<br><span>Ozvite sa.</span></h2>
+            <div class="contact-info">
+                <p><a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+                <p>{{ data.telefon }}</p>
+                <p>{{ data.lokacia }}</p>
+            </div>
+            <div class="social">
+                {% for s in data.social %}<a href="{{ s.url }}">{{ s.nazov }}</a>{% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2025 {{ data.meno }}</p></div></footer>
+</body>
+</html>

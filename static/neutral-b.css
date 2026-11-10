@@ -1,0 +1,10 @@
+@import url('neutral-base.css');
+
+:root {
+    --bg: #faf7f2;
+    --text: #1c1814;
+    --muted: #6b5f52;
+    --line: #e8e0d2;
+    --accent: #92400e;
+    --font-display: 'Fraunces', Georgia, serif;
+}

@@ -1,0 +1,10 @@
+@import url('neutral-base.css');
+
+:root {
+    --bg: #f7f8f7;
+    --text: #0f1a14;
+    --muted: #5f6b63;
+    --line: #e0e5e0;
+    --accent: #065f46;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+}
