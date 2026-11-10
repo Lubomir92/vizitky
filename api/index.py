@@ -1,7 +1,12 @@
+import os
 from flask import Flask, render_template
 
-app = Flask(__name__)
+# Získa cestu k nadradenému priečinku (koreň projektu)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+app = Flask(__name__,
+            template_folder=os.path.join(BASE_DIR, 'templates'),
+            static_folder=os.path.join(BASE_DIR, 'static'))
 DATA = {
     "meno": "Alex Novák",
     "profesia": "Digitálny dizajnér & konzultant",
