@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='story.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a><a href="/v2">2</a><a href="/v3">3</a><a href="/v4">4</a>
+        <a href="/v5">5</a><a href="/v6">6</a><a href="/v7">7</a>
+        <a href="/v8">8</a><a href="/v9">9</a><a href="/v10">10</a><a href="/v11">11</a>
+        <a href="/v12" class="active">12</a><a href="/v13">13</a><a href="/v14">14</a>
+    </nav>
+
+    <main class="story">
+
+        <section class="chapter chapter-hero">
+            <p class="chapter-num">01</p>
+            <h1>{{ data.meno.split(' ')[0] }}<br><em>{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</em></h1>
+            <p class="chapter-sub">{{ data.profesia }}</p>
+        </section>
+
+        <section class="chapter">
+            <p class="chapter-num">02</p>
+            <p class="chapter-text">{{ data.tagline }}</p>
+        </section>
+
+        <section class="chapter">
+            <p class="chapter-num">03</p>
+            <p class="chapter-text">{{ data.o_mne }}</p>
+        </section>
+
+        <section class="chapter">
+            <p class="chapter-num">04</p>
+            <h2 class="chapter-title">Čo ponúkam</h2>
+            <div class="story-services">
+                {% for s in data.sluzby %}
+                <div class="story-service">
+                    <span class="service-num">0{{ loop.index }}</span>
+                    <h3>{{ s.nazov }}</h3>
+                    <p>{{ s.popis }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="chapter chapter-contact">
+            <p class="chapter-num">05</p>
+            <h2 class="chapter-title">Ozvite sa</h2>
+            <p class="chapter-text">Máte projekt? Napíšte mi na <a href="mailto:{{ data.email }}">{{ data.email }}</a> alebo zavolajte na {{ data.telefon }}.</p>
+            <p class="chapter-loc">{{ data.lokacia }}</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 {{ data.meno }}</p>
+    </footer>
+
+</body>
+</html>

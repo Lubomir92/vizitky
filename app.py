@@ -114,6 +114,9 @@ def v10(): return render_template("stage.html", data=DATA)
 @app.route("/v11")
 def v11(): return render_template("waves.html", data=DATA)
 
+@app.route("/v12")
+def v12(): return render_template("story.html", data=DATA)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
