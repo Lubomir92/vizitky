@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sound.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a><a href="/v2">2</a><a href="/v3">3</a><a href="/v4">4</a>
+        <a href="/v5">5</a><a href="/v6">6</a><a href="/v7">7</a>
+        <a href="/v8">8</a><a href="/v9">9</a><a href="/v10">10</a><a href="/v11">11</a>
+        <a href="/v12">12</a><a href="/v13">13</a><a href="/v14">14</a><a href="/v15" class="active">15</a>
+    </nav>
+
+    <!-- POZADIE: zvukové vlny + mikrofóny + reproduktory -->
+    <div class="sound-bg">
+        <svg class="bg-icon bg-icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+            <line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="8" y1="22" x2="16" y2="22"/>
+        </svg>
+        <svg class="bg-icon bg-icon-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+        <svg class="bg-icon bg-icon-wave" viewBox="0 0 200 100" preserveAspectRatio="none" stroke="currentColor" fill="none" stroke-width="0.5">
+            <path d="M0,50 Q25,20 50,50 T100,50 T150,50 T200,50"/>
+            <path d="M0,50 Q25,80 50,50 T100,50 T150,50 T200,50" style="opacity:0.5"/>
+        </svg>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <p class="eyebrow">OZVUČENIE & SVETLO</p>
+            <h1>Zvuk, ktorý<br><span>cítite.</span></h1>
+            <p class="tagline">{{ data.tagline }}</p>
+            <div class="cta">
+                <a href="#kontakt" class="btn btn-primary">Nezáväzná ponuka →</a>
+                <a href="#sluzby" class="btn btn-ghost">Čo ponúkame</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="sluzby">
+        <div class="container">
+            <p class="section-label">01 — Služby</p>
+            <div class="bento">
+                {% for s in data.sluzby %}
+                <div class="bento-card">
+                    <div class="bento-head">
+                        <span class="bento-num">0{{ loop.index }}</span>
+                        <h3>{{ s.nazov }}</h3>
+                    </div>
+                    <p>{{ s.popis }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label">02 — Recenzie</p>
+            <div class="reviews">
+                {% for r in data.recenzie[:4] %}
+                <div class="review">
+                    <p>„{{ r.text }}"</p>
+                    <span>{{ r.autor }} · {{ r.typ }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontakt">
+        <div class="container">
+            <p class="section-label">03 — Kontakt</p>
+            <h2 class="contact-headline">Máte podujatie?<br><span>Ozvite sa.</span></h2>
+            <div class="contact-info">
+                <p><a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+                <p>{{ data.telefon }}</p>
+                <p>{{ data.lokacia }}</p>
+            </div>
+            <div class="social">
+                {% for s in data.social %}<a href="{{ s.url }}">{{ s.nazov }}</a>{% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="container"><p>© 2025 {{ data.meno }}</p></div></footer>
+
+</body>
+</html>

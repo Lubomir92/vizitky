@@ -76,6 +76,7 @@ def index():
                 <a class="card" href="/v12"><div class="num">12</div><div class="name">One-page Story</div><div class="desc">Plynulý príbeh</div></a>
 <a class="card" href="/v13"><div class="num">13</div><div class="name">Video Hero</div><div class="desc">Video pozadie</div></a>
 <a class="card" href="/v14"><div class="num">14</div><div class="name">Card Deck</div><div class="desc">Otáčavé karty</div></a>
+<a class="card" href="/v15"><div class="num">15</div><div class="name">Sound Stage</div><div class="desc">Mikrofóny, reproduktory, vlny</div></a>
             </div>
         </div>
     </body>
