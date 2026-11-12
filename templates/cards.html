@@ -37,14 +37,16 @@
             <p class="card-label">Karta 03 — Služby</p>
             <h2>Čo ponúkam</h2>
             <div class="card-services-list">
-                {% for s in data.sluzby %}
-                <div class="card-service">
-                    <span class="service-num">0{{ loop.index }}</span>
-                    <h3>{{ s.nazov }}</h3>
-                    <p>{{ s.popis }}</p>
-                </div>
-                {% endfor %}
-            </div>
+    {% for s in data.sluzby %}
+    <div class="card-service">
+        <div class="card-service-head">
+            <span class="service-num">0{{ loop.index }}</span>
+            <h3>{{ s.nazov }}</h3>
+        </div>
+        <p>{{ s.popis }}</p>
+    </div>
+    {% endfor %}
+</div>
             <p class="card-hint">↓ Posledná karta</p>
         </div>
 
