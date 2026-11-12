@@ -73,6 +73,9 @@ def index():
                 <a class="card" href="/v9"><div class="num">09</div><div class="name">Tech Dark</div><div class="desc">Kód v pozadí</div></a>
                 <a class="card" href="/v10"><div class="num">10</div><div class="name">Stage Lights</div><div class="desc">Svetelné lúče (ozvučenie)</div></a>
                 <a class="card" href="/v11"><div class="num">11</div><div class="name">Sound Waves</div><div class="desc">Zvukové vlny (ozvučenie)</div></a>
+                <a class="card" href="/v12"><div class="num">12</div><div class="name">One-page Story</div><div class="desc">Plynulý príbeh</div></a>
+<a class="card" href="/v13"><div class="num">13</div><div class="name">Video Hero</div><div class="desc">Video pozadie</div></a>
+<a class="card" href="/v14"><div class="num">14</div><div class="name">Card Deck</div><div class="desc">Otáčavé karty</div></a>
             </div>
         </div>
     </body>
@@ -116,6 +119,12 @@ def v11(): return render_template("waves.html", data=DATA)
 
 @app.route("/v12")
 def v12(): return render_template("story.html", data=DATA)
+
+@app.route("/v13")
+def v13(): return render_template("video.html", data=DATA)
+
+@app.route("/v14")
+def v14(): return render_template("cards.html", data=DATA)
 
 
 if __name__ == "__main__":

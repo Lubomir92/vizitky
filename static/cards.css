@@ -1,0 +1,184 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bg: #0f0a1a;
+    --surface: #1a1228;
+    --text: #f0eef8;
+    --muted: #9a8fb0;
+    --line: #2a1f3a;
+    --accent: #c084fc;
+    --accent2: #f472b6;
+}
+html { scroll-behavior: smooth; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* DECK */
+.deck {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 56px 48px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.card:hover {
+    transform: translateY(-8px) rotate(-0.5deg);
+    border-color: var(--accent);
+    box-shadow: 0 30px 80px rgba(192,132,252,0.2);
+}
+.card:nth-child(even):hover {
+    transform: translateY(-8px) rotate(0.5deg);
+}
+.card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+.card h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+}
+.card h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.card h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+}
+.card-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+.card-hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 40px;
+    opacity: 0.6;
+}
+.card-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+.card-text a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+}
+.card-text a:hover { color: var(--accent); }
+.card-loc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+/* SLUŽBY */
+.card-services-list { display: flex; flex-direction: column; gap: 0; }
+.card-service {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 20px;
+}
+.card-service:last-child { border-bottom: 1px solid var(--line); }
+.service-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 700;
+    padding-top: 4px;
+}
+.card-service h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.card-service p { color: var(--muted); font-size: 0.95rem; }
+
+/* SOCIAL */
+.social { display: flex; gap: 12px; flex-wrap: wrap; }
+.social a {
+    padding: 8px 18px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.social a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* SWITCHER */
+.switcher {
+    position: fixed; top: 24px; right: 24px; z-index: 100;
+    display: flex; gap: 2px;
+    background: rgba(26,18,40,0.85);
+    border: 1px solid var(--line);
+    border-radius: 10px; padding: 4px;
+    backdrop-filter: blur(20px);
+    overflow-x: auto; max-width: calc(100vw - 48px);
+}
+.switcher a {
+    color: var(--muted); text-decoration: none;
+    padding: 6px 10px; font-size: 0.7rem; font-weight: 600;
+    border-radius: 6px; transition: all 0.15s;
+    min-width: 24px; text-align: center;
+}
+.switcher a.active { background: var(--accent); color: var(--bg); }
+
+@media (max-width: 720px) {
+    .deck { padding: 60px 16px; }
+    .card { padding: 40px 28px; }
+    .card-service { grid-template-columns: 1fr; gap: 8px; }
+}

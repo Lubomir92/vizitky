@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.meno }} — {{ data.profesia }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cards.css') }}">
+</head>
+<body>
+
+    <nav class="switcher">
+        <a href="/v1">1</a><a href="/v2">2</a><a href="/v3">3</a><a href="/v4">4</a>
+        <a href="/v5">5</a><a href="/v6">6</a><a href="/v7">7</a>
+        <a href="/v8">8</a><a href="/v9">9</a><a href="/v10">10</a><a href="/v11">11</a>
+        <a href="/v12">12</a><a href="/v13">13</a><a href="/v14" class="active">14</a>
+    </nav>
+
+    <main class="deck">
+
+        <div class="card card-hero">
+            <p class="card-label">Karta 01 — Predstavenie</p>
+            <h1>{{ data.meno.split(' ')[0] }}<br><span>{{ data.meno.split(' ')[1] if data.meno.split(' ')|length > 1 else '' }}</span></h1>
+            <p class="card-sub">{{ data.profesia }}</p>
+            <p class="card-hint">↓ Klikni na ďalšiu kartu</p>
+        </div>
+
+        <div class="card card-story">
+            <p class="card-label">Karta 02 — O mne</p>
+            <h2>Kto som</h2>
+            <p>{{ data.o_mne }}</p>
+            <p class="card-hint">↓ Ďalšia karta</p>
+        </div>
+
+        <div class="card card-services">
+            <p class="card-label">Karta 03 — Služby</p>
+            <h2>Čo ponúkam</h2>
+            <div class="card-services-list">
+                {% for s in data.sluzby %}
+                <div class="card-service">
+                    <span class="service-num">0{{ loop.index }}</span>
+                    <h3>{{ s.nazov }}</h3>
+                    <p>{{ s.popis }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <p class="card-hint">↓ Posledná karta</p>
+        </div>
+
+        <div class="card card-contact">
+            <p class="card-label">Karta 04 — Kontakt</p>
+            <h2>Ozvite sa</h2>
+            <p class="card-text">Máte projekt? Napíšte mi na <a href="mailto:{{ data.email }}">{{ data.email }}</a> alebo zavolajte na {{ data.telefon }}.</p>
+            <p class="card-loc">{{ data.lokacia }}</p>
+            <div class="social">
+                {% for s in data.social %}<a href="{{ s.url }}">{{ s.nazov }}</a>{% endfor %}
+            </div>
+        </div>
+
+    </main>
+
+    <footer><p>© 2025 {{ data.meno }}</p></footer>
+
+</body>
+</html>
