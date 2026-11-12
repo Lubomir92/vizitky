@@ -127,6 +127,9 @@ def v13(): return render_template("video.html", data=DATA)
 @app.route("/v14")
 def v14(): return render_template("cards.html", data=DATA)
 
+@app.route("/v15")
+def v15(): return render_template("sound.html", data=DATA)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
